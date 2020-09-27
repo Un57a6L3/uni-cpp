@@ -94,7 +94,7 @@ void filec()
 
 void prepod_valit()
 {
-	char alph[] = {"абвгдеёжзийклмнопрстуфхцчшщъыьэюя"};
+	char alph[] = {"Р°Р±РІРіРґРµС‘Р¶Р·РёР№РєР»РјРЅРѕРїСЂСЃС‚СѓС„С…С†С‡С€С‰СЉС‹СЊСЌСЋСЏ"};
 	string str;
 	char temp;
 	bool found;
@@ -264,6 +264,6 @@ setlocale(LC_ALL, "rus");
 	*/
 	
 	// task prepod valit
-	cout << "Task NaN: Отчислен" << endl;
+	cout << "Task NaN: РћС‚С‡РёСЃР»РµРЅ" << endl;
 	prepod_valit();
 }
