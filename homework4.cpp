@@ -42,32 +42,63 @@ int sign(int x)
 
 float srec(float a, float b)
 {
+	if (a <= 0 || b <= 0)
+		return -1;
 	return a * b;
 }
 
 float stri(float a, float b, float c)
 {
+	if (a <= 0 || b <= 0 || c <= 0)
+		return -1;	
 	float p = (a + b + c) / 2;
-	return p * (p - a) * (p - b) * (p - c);
+	if (p - a <= 0 || p - b <= 0 || p - c <= 0)
+		return -1;
+	return sqrt(p * (p - a) * (p - b) * (p - c));
 }
 
 float scir(float r)
 {
+	if (r <= 0)
+		return -1;
 	return M_PI * r * r;
 }
 
 void surfaces()
 {
 	float a, b, c;
-	cout << "Rectangle
+	
+	cout << "Rectangle:" << endl << "Enter a, b: ";
+	cin >> a >> b;
+	c = srec(a, b);
+	if (c != -1)
+		cout << "Rectangle surface = " << c << endl;
+	else
+		cout << "Error: invalid input!" << endl;
+	
+	cout << "Triangle:" << endl << "Enter a, b, c: ";
+	cin >> a >> b >> c;
+	c = stri(a, b, c);
+	if (c != -1)
+		cout << "Triangle surface = " << c << endl;
+	else
+		cout << "Error: invalid input!" << endl;
+	
+	cout << "Circle:" << endl << "Enter radius: ";
+	cin >> c;
+	c = scir(c);
+	if (c != -1)
+		cout << "Circle surface = " << c << endl << endl;
+	else
+		cout << "Error: invalid input!" << endl << endl;
 }
 
 int main()
 {
 	// task 1
-	cout << "Task 1: File Sum" << endl;
-	genfile();
-	cout << "Sum of numbers in file = " << filesum() << endl << endl;
+	//cout << "Task 1: File Sum" << endl;
+	//genfile();
+	//cout << "Sum of numbers in file = " << filesum() << endl << endl;
 	
 	// task 2
 	cout << "Task 2: Number Sign" << endl;
@@ -75,12 +106,12 @@ int main()
 	int a; cin >> a;
 	switch (sign(a))
 	{
-		case 1: cout << "The sign of " << a << " is '+'" << endl; break;
-		case -1: cout << "The sign of " << a << " is '-'" << endl; break;
-		case 0: cout << "Zero has no sign" << endl; break;
+		case 1: cout << "The sign of " << a << " is '+'" << endl << endl; break;
+		case -1: cout << "The sign of " << a << " is '-'" << endl << endl; break;
+		case 0: cout << "Zero has no sign" << endl << endl; break;
 	}
 	
 	// task 3
 	cout << "Task 3: Shape Surface" << endl;
-	
+	surfaces();
 }
