@@ -239,9 +239,8 @@ int main()
 {
 setlocale(LC_ALL, "rus");
 	SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleOutputCP(1251);	
 	
-	/*
 	// task 1
 	cout << "Task 1: Credit" << endl;
 	creditm();
@@ -261,7 +260,6 @@ setlocale(LC_ALL, "rus");
 	// task 5
 	cout << "Task 5: String sort" << endl;
 	charsort();
-	*/
 	
 	// task prepod valit
 	cout << "Task NaN: Отчислен" << endl;
