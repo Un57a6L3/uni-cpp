@@ -113,17 +113,17 @@ void prepod_valit()
 				found = true;
 		if (found)
 		{
-		for (int j = 0; j < res.length(); j++)
-		{
-			if (temp == res[j])
-				break;
-			if (res[j] == '0')
+			for (int j = 0; j < res.length(); j++)
 			{
-				res[j] = temp;
-				count++;
-				break;
+				if (temp == res[j])
+					break;
+				if (res[j] == '0')
+				{
+					res[j] = temp;
+					count++;
+					break;
+				}
 			}
-		}
 		}
 	}
 	res = res.substr(0, count);
