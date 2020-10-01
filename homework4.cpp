@@ -169,7 +169,6 @@ void printsin()
 
 int main()
 {
-	/*
 	// task 1
 	cout << "Task 1: File Sum" << endl;
 	genfile();
@@ -188,12 +187,11 @@ int main()
 	
 	// task 3
 	cout << "Task 3: Shape Surface" << endl;
-	surfaces();	
+	surfaces();
 	
 	// task 4
 	cout << "Task 4: Old USA flag (1912)" << endl;
 	usaflag();
-	*/
 	
 	// task 5
 	cout << "Task 5: Print sin(x)" << endl;
