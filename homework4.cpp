@@ -128,8 +128,48 @@ void usaflag()
 	SetConsoleTextAttribute(hdl, 15);
 }
 
+void printsin()
+{
+	int i = 25, j = 65;
+	char graph[i][j];
+	
+	for (i = 0; i < 25; i++)
+	{
+		for (j = 0; j < 65; j++)
+		{
+			if (j == 32) graph[i][j] = '|';
+			else if (i == 12) graph[i][j] = '-';
+			else graph[i][j] = ' ';
+		}
+	}
+	
+	int a;
+	float x, y;
+	for (j = 0; j < 65; j++)
+	{
+		x = M_PI * (j / 16.0 - 2);
+		y = sin(x);
+		y = y * (-10);
+		if (y > 0) a = floor(y) + 12;
+		else a = ceil(y) + 12;
+		//graph[a][j] = '*';
+		
+		if (1 - fabs(cos(x)) > 0.85) graph[a][j] = '-';
+		else if (cos(x) > 0) graph[a][j] = '^';
+		else if (cos(x) < 0) graph[a][j] = 'v';		
+	}
+	
+	for (i = 0; i < 25; i++)
+	{
+		for (j = 0; j < 65; j++)
+			cout << graph[i][j];
+		cout << endl;
+	}		
+}
+
 int main()
 {
+	/*
 	// task 1
 	cout << "Task 1: File Sum" << endl;
 	genfile();
@@ -148,11 +188,16 @@ int main()
 	
 	// task 3
 	cout << "Task 3: Shape Surface" << endl;
-	surfaces();
+	surfaces();	
 	
 	// task 4
 	cout << "Task 4: Old USA flag (1912)" << endl;
 	usaflag();
+	*/
+	
+	// task 5
+	cout << "Task 5: Print sin(x)" << endl;
+	printsin();
 	
 	cin.get(); // wait
 }
