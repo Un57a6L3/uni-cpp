@@ -4,6 +4,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -93,12 +94,46 @@ void surfaces()
 		cout << "Error: invalid input!" << endl << endl;
 }
 
+void usaflag()
+{
+	HANDLE hdl = GetStdHandle(STD_OUTPUT_HANDLE);
+	// parameters for text color
+	// 15 - default (black bg, white text)
+	// 31 for stars (blue bg, white text)
+	// 64-79 for red stripe (red bg) - (68)
+	// 240-255 for white stripe (white bg) - (255)
+	
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			if (i < 6 && j < 8)
+			{
+				SetConsoleTextAttribute(hdl, 31);
+				cout << "* ";
+			}
+			else if (i % 2 == 0)
+			{
+				SetConsoleTextAttribute(hdl, 64);
+				cout << "  ";
+			}
+			else if (i % 2 == 1)
+			{
+				SetConsoleTextAttribute(hdl, 240);
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+	SetConsoleTextAttribute(hdl, 15);
+}
+
 int main()
 {
 	// task 1
-	//cout << "Task 1: File Sum" << endl;
-	//genfile();
-	//cout << "Sum of numbers in file = " << filesum() << endl << endl;
+	cout << "Task 1: File Sum" << endl;
+	genfile();
+	cout << "Sum of numbers in file = " << filesum() << endl << endl;
 	
 	// task 2
 	cout << "Task 2: Number Sign" << endl;
@@ -114,4 +149,10 @@ int main()
 	// task 3
 	cout << "Task 3: Shape Surface" << endl;
 	surfaces();
+	
+	// task 4
+	cout << "Task 4: Old USA flag (1912)" << endl;
+	usaflag();
+	
+	cin.get(); // wait
 }
