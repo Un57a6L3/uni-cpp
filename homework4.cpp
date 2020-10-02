@@ -51,7 +51,7 @@ float srec(float a, float b)
 float stri(float a, float b, float c)
 {
 	if (a <= 0 || b <= 0 || c <= 0)
-		return -1;	
+		return -1;
 	float p = (a + b + c) / 2;
 	if (p - a <= 0 || p - b <= 0 || p - c <= 0)
 		return -1;
@@ -68,7 +68,7 @@ float scir(float r)
 void surfaces()
 {
 	float a, b, c;
-	
+
 	cout << "Rectangle:" << endl << "Enter a, b: ";
 	cin >> a >> b;
 	c = srec(a, b);
@@ -76,7 +76,7 @@ void surfaces()
 		cout << "Rectangle surface = " << c << endl << endl;
 	else
 		cout << "Error: invalid input!" << endl << endl;
-	
+
 	cout << "Triangle:" << endl << "Enter a, b, c: ";
 	cin >> a >> b >> c;
 	c = stri(a, b, c);
@@ -84,7 +84,7 @@ void surfaces()
 		cout << "Triangle surface = " << c << endl << endl;
 	else
 		cout << "Error: invalid input!" << endl << endl;
-	
+
 	cout << "Circle:" << endl << "Enter radius: ";
 	cin >> c;
 	c = scir(c);
@@ -102,7 +102,7 @@ void usaflag()
 	// 31 for stars (blue bg, white text)
 	// 64-79 for red stripe (red bg) - (68)
 	// 240-255 for white stripe (white bg) - (255)
-	
+
 	for (int i = 0; i < 13; i++)
 	{
 		for (int j = 0; j < 20; j++)
@@ -133,7 +133,7 @@ void printsin()
 {
 	int i = 25, j = 65;
 	char graph[i][j];
-	
+
 	for (i = 0; i < 25; i++)
 	{
 		for (j = 0; j < 65; j++)
@@ -143,7 +143,7 @@ void printsin()
 			else graph[i][j] = ' ';
 		}
 	}
-	
+
 	int a;
 	float x, y;
 	for (j = 0; j < 65; j++)
@@ -154,12 +154,12 @@ void printsin()
 		if (y > 0) a = floor(y) + 12;
 		else a = ceil(y) + 12;
 		//graph[a][j] = '*';
-		
+
 		if (1 - fabs(cos(x)) > 0.85) graph[a][j] = '-';
 		else if (cos(x) > 0) graph[a][j] = '^';
-		else if (cos(x) < 0) graph[a][j] = 'v';		
+		else if (cos(x) < 0) graph[a][j] = 'v';
 	}
-	
+
 	for (i = 0; i < 25; i++)
 	{
 		for (j = 0; j < 65; j++)
@@ -175,14 +175,15 @@ int main()
 	while (tasknum == 1)
 	{
 		cout << "Homework 4. Tasks:" << endl
-			 << "1) File Sum" << endl
-			 << "2) Number Sign" << endl
-			 << "3) Shape Surface" << endl
-			 << "4) Old USA Flag" << endl
-			 << "5) Print sin(x)" << endl;
+		     << "1) File Sum" << endl
+		     << "2) Number Sign" << endl
+		     << "3) Shape Surface" << endl
+		     << "4) Old USA Flag" << endl
+		     << "5) Print sin(x)" << endl;
 		cout << "Enter task number: ";
-		cin >> tasknum; cout << endl;
-		
+		cin >> tasknum;
+		cout << endl;
+
 		switch (tasknum)
 		{
 			case 1:
@@ -193,12 +194,19 @@ int main()
 			case 2:
 				cout << "Task 2: Number Sign" << endl;
 				cout << "Enter integer: ";
-				int a; cin >> a;
+				int a;
+				cin >> a;
 				switch (sign(a))
 				{
-					case 1: cout << "The sign of " << a << " is '+'" << endl << endl; break;
-					case -1: cout << "The sign of " << a << " is '-'" << endl << endl; break;
-					case 0: cout << "Zero has no sign" << endl << endl; break;
+					case 1:
+						cout << "The sign of " << a << " is '+'" << endl << endl;
+						break;
+					case -1:
+						cout << "The sign of " << a << " is '-'" << endl << endl;
+						break;
+					case 0:
+						cout << "Zero has no sign" << endl << endl;
+						break;
 				}
 				break;
 			case 3:
@@ -214,8 +222,9 @@ int main()
 				printsin();
 				break;
 		}
-		
+
 		cout << "If you want to continue, enter 1: ";
-		cin >> tasknum; cout << endl;
+		cin >> tasknum;
+		cout << endl;
 	}
 }
