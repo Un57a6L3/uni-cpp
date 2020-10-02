@@ -73,17 +73,17 @@ void surfaces()
 	cin >> a >> b;
 	c = srec(a, b);
 	if (c != -1)
-		cout << "Rectangle surface = " << c << endl;
+		cout << "Rectangle surface = " << c << endl << endl;
 	else
-		cout << "Error: invalid input!" << endl;
+		cout << "Error: invalid input!" << endl << endl;
 	
 	cout << "Triangle:" << endl << "Enter a, b, c: ";
 	cin >> a >> b >> c;
 	c = stri(a, b, c);
 	if (c != -1)
-		cout << "Triangle surface = " << c << endl;
+		cout << "Triangle surface = " << c << endl << endl;
 	else
-		cout << "Error: invalid input!" << endl;
+		cout << "Error: invalid input!" << endl << endl;
 	
 	cout << "Circle:" << endl << "Enter radius: ";
 	cin >> c;
@@ -126,6 +126,7 @@ void usaflag()
 		cout << endl;
 	}
 	SetConsoleTextAttribute(hdl, 15);
+	cout << endl;
 }
 
 void printsin()
@@ -164,38 +165,57 @@ void printsin()
 		for (j = 0; j < 65; j++)
 			cout << graph[i][j];
 		cout << endl;
-	}		
+	}
+	cout << endl;
 }
 
 int main()
 {
-	// task 1
-	cout << "Task 1: File Sum" << endl;
-	genfile();
-	cout << "Sum of numbers in file = " << filesum() << endl << endl;
-	
-	// task 2
-	cout << "Task 2: Number Sign" << endl;
-	cout << "Enter integer: ";
-	int a; cin >> a;
-	switch (sign(a))
+	int tasknum = 1;
+	while (tasknum == 1)
 	{
-		case 1: cout << "The sign of " << a << " is '+'" << endl << endl; break;
-		case -1: cout << "The sign of " << a << " is '-'" << endl << endl; break;
-		case 0: cout << "Zero has no sign" << endl << endl; break;
+		cout << "Homework 4. Tasks:" << endl
+			 << "1) File Sum" << endl
+			 << "2) Number Sign" << endl
+			 << "3) Shape Surface" << endl
+			 << "4) Old USA Flag" << endl
+			 << "5) Print sin(x)" << endl;
+		cout << "Enter task number: ";
+		cin >> tasknum; cout << endl;
+		
+		switch (tasknum)
+		{
+			case 1:
+				cout << "Task 1: File Sum" << endl;
+				genfile();
+				cout << "Sum of numbers in file = " << filesum() << endl << endl;
+				break;
+			case 2:
+				cout << "Task 2: Number Sign" << endl;
+				cout << "Enter integer: ";
+				int a; cin >> a;
+				switch (sign(a))
+				{
+					case 1: cout << "The sign of " << a << " is '+'" << endl << endl; break;
+					case -1: cout << "The sign of " << a << " is '-'" << endl << endl; break;
+					case 0: cout << "Zero has no sign" << endl << endl; break;
+				}
+				break;
+			case 3:
+				cout << "Task 3: Shape Surface" << endl;
+				surfaces();
+				break;
+			case 4:
+				cout << "Task 4: Old USA flag (1912)" << endl;
+				usaflag();
+				break;
+			case 5:
+				cout << "Task 5: Print sin(x)" << endl;
+				printsin();
+				break;
+		}
+		
+		cout << "If you want to continue, enter 1: ";
+		cin >> tasknum; cout << endl;
 	}
-	
-	// task 3
-	cout << "Task 3: Shape Surface" << endl;
-	surfaces();
-	
-	// task 4
-	cout << "Task 4: Old USA flag (1912)" << endl;
-	usaflag();
-	
-	// task 5
-	cout << "Task 5: Print sin(x)" << endl;
-	printsin();
-	
-	cin.get(); // wait
 }
