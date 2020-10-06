@@ -358,30 +358,25 @@ int xtodecimal(string number, int x)
 
 string decimaltox(int number, int x)
 {
-	int index = 0;
-	int temp = x;
-	while (number >= temp)
-	{
-		index++;
-		temp *= x;
-	}
-	temp /= x;
-	string result;
-	char figure;
-	int digit;
-	while (index >= 0)
-	{
-		digit = number / temp;
-		number = number % temp;
-		temp /= x;
-		--index;
-		if (digit >= 0 && digit <= 9)
-			figure = digit + 48;
-		if (digit >= 10 && digit <= 35)
-			figure = digit + 55;
-		result = result + figure;
-	}
-	return result;
+    string result;
+    //filling the result string with numerals
+    while (number > 0)
+    {
+        int numeral = number % x;
+        if (numeral <= 9)
+            result += '0' + numeral;
+        else
+            result += 'A' + (numeral - 10);
+        number /= x;
+    }
+    //reversing the string
+    for (size_t i = 0, j = result.length() - 1; i < j; ++i, --j)
+    {
+        char temp = result[i];
+        result[i] = result[j];
+        result[j] = temp;
+    }
+    return result;
 }
 
 void numeralsystems()
