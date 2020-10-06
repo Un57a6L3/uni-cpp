@@ -240,11 +240,97 @@ void genrand()
 	cin >> v;
 	cout << "Enter number of integers to generate: ";
 	cin >> N;
+	cout << "Enter seed (default is 0): ";
+	cin >> temp;
 	for (int i = 0; i <= N; ++i)
 	{
 		temp = crand(temp, v);
 		cout << "Pseudo-random integer S[" << i << "]: " << temp << endl;
 	}
+	cout << endl;
+}
+
+void matrixtask()
+{
+	// matrices here are hardcoded, since they are constant in the task
+	double a[3][4] = {{5, 2, 0, 10}, {3, 5, 2, 5}, {20, 0, 0, 0}};
+	double b[4][2] = {{1.2, 0.5}, {2.8, 0.4}, {5.0, 1.0}, {2.0, 1.5}};
+	double c[3][2];
+	double sum;
+
+	// matrix multiplication
+	for (int i = 0; i < 3; ++i)
+		for (int j = 0; j < 2; ++j)
+		{
+			sum = 0;
+			for (int k = 0; k < 4; ++k)
+				sum += a[i][k] * b[k][j];
+			c[i][j] = sum;
+		}
+
+	// additional tasks
+	// initialization
+	double max, min, temp;
+	int imax, imin;
+
+	// 1) which seller got most and least profit
+	imax = 0;
+	imin = 0;
+	max = c[0][0];
+	min = c[0][0];
+	for (int i = 1; i < 3; ++i)
+	{
+		temp = c[i][0];
+		if (temp > max)
+		{
+			max = temp;
+			imax = i;
+		}
+		if (temp < min)
+		{
+			min = temp;
+			imin = i;
+		}
+	}
+	cout << "Merchant " << imax + 1
+	     << " got the most profit: "
+	     << max << endl;
+	cout << "Merchant " << imin + 1
+	     << " got the least profit: "
+	     << min << endl;
+
+	// 2) which seller got most and least commitions
+	imax = 0;
+	imin = 0;
+	max = c[0][1];
+	min = c[0][1];
+	for (int i = 1; i < 3; ++i)
+	{
+		temp = c[i][1];
+		if (temp > max)
+		{
+			max = temp;
+			imax = i;
+		}
+		if (temp < min)
+		{
+			min = temp;
+			imin = i;
+		}
+	}
+	cout << "Merchant " << imax + 1
+	     << " got the most commitions: "
+	     << max << endl;
+	cout << "Merchant " << imin + 1
+	     << " got the least commitions: "
+	     << min << endl;
+
+	// 3-5) total profit & total commitions
+	max = c[0][0] + c[1][0] + c[2][0];
+	min = c[0][1] + c[1][1] + c[2][1];
+	cout << "Total profit: " << max << endl;
+	cout << "Total commitions: " << min << endl;
+	cout << "Total money: " << max + min << endl;
 	cout << endl;
 }
 
@@ -255,13 +341,14 @@ int main()
 	while (tasknum != 0)
 	{
 		cout << "Homework 4. Tasks:" << endl
-		     << "1) File Sum" << endl
-		     << "2) Number Sign" << endl
-		     << "3) Shape Surface" << endl
-		     << "4) Old USA Flag" << endl
-		     << "5) Print sin(x)" << endl
-		     << "6) Roman Number" << endl
-		     << "7) Pseudo-Random" << endl;
+		     << "1) Sum of integers in file" << endl
+		     << "2) Sign of integer" << endl
+		     << "3) Surface of shapes" << endl
+		     << "4) Print old USA flag" << endl
+		     << "5) Print function sin(x)" << endl
+		     << "6) Roman number to int" << endl
+		     << "7) Pseudo-random numbers" << endl
+		     << "8) Matrix multiplication" << endl;
 		cout << "Enter task number or 0 to finish: ";
 		cin >> tasknum;
 		cout << endl;
@@ -323,6 +410,10 @@ int main()
 			case 7:
 				cout << "Task 7: Pseudo-Random Number Generator" << endl;
 				genrand();
+				break;
+			case 8:
+				cout << "Task 8: Matrix Multiplication" << endl;
+				matrixtask();
 				break;
 			default:
 				cout << "Invalid input, try again!" << endl << endl;
