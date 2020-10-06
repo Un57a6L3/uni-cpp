@@ -1,10 +1,11 @@
 #define PI acos(-1)
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+#include <cctype>
 
 using namespace std;
 
@@ -334,6 +335,94 @@ void matrixtask()
 	cout << endl;
 }
 
+int xtodecimal(string number, int x)
+{
+	int sum = 0, digit = 1;
+	char t;
+	for (int i = number.length() - 1; i >= 0; --i)
+	{
+		t = number[i];
+		if (!isalnum(t))
+			return -1;
+		if (isdigit(t))
+			t = t - 48;
+		if (isalpha(t))
+			t = toupper(t) - 55;
+		if (t >= x)
+			return -1;
+		sum += digit * t;
+		digit *= x;
+	}
+	return sum;
+}
+
+string decimaltox(int number, int x)
+{
+	int index = 0;
+	int temp = x;
+	while (number >= temp)
+	{
+		index++;
+		temp *= x;
+	}
+	temp /= x;
+	string result;
+	char figure;
+	int digit;
+	while (index >= 0)
+	{
+		digit = number / temp;
+		number = number % temp;
+		temp /= x;
+		--index;
+		if (digit >= 0 && digit <= 9)
+			figure = digit + 48;
+		if (digit >= 10 && digit <= 35)
+			figure = digit + 55;
+		result = result + figure;
+	}
+	return result;
+}
+
+void numeralsystems()
+{
+	string number;
+	int x, y;
+	cout << "Enter unsigned number in NS base X (input): ";
+	cin >> number;
+	cout << "Enter X for NS base X from 2 to 36 (input): ";
+	cin >> x;
+	cout << "Enter Y for NS base Y from 2 to 36 (output): ";
+	cin >> y;
+	if (x < 2 || x > 36 || y < 2 || y > 36)
+	{
+		cout << "Error: invalid input!" << endl << endl;
+		return;
+	}
+	for (int i = 0; i < number.length(); ++i)
+		number[i] = toupper(number[i]);
+	if (x > 16 || y > 16)
+	{
+		cout << endl << "You've entered base > 16, so here's a reminder!"
+		     << endl << "A = 10  B = 11  C = 12  D = 13"
+		     << endl << "E = 14  F = 15  G = 16  H = 17"
+		     << endl << "I = 18  J = 19  K = 20  L = 21"
+		     << endl << "M = 22  N = 23  O = 24  P = 25"
+		     << endl << "Q = 26  R = 27  S = 28  T = 29"
+		     << endl << "U = 30      V = 31      W = 32"
+		     << endl << "X = 33      Y = 34      Z = 35"
+		     << endl << endl;
+	}
+	int decimal = xtodecimal(number, x);
+	if (decimal == -1)
+	{
+		cout << "Error: invalid input!" << endl << endl;
+		return;
+	}
+	string result = decimaltox(decimal, y);
+	cout << "Result: " << result << endl << endl;
+}
+
 int main()
 {
 	cout << "Program by Un57a6L3" << endl << endl;
@@ -348,7 +437,8 @@ int main()
 		     << "5) Print function sin(x)" << endl
 		     << "6) Roman number to int" << endl
 		     << "7) Pseudo-random numbers" << endl
-		     << "8) Matrix multiplication" << endl;
+		     << "8) Matrix multiplication" << endl
+		     << "9) Numeral system change" << endl;
 		cout << "Enter task number or 0 to finish: ";
 		cin >> tasknum;
 		cout << endl;
@@ -359,12 +449,12 @@ int main()
 				tasknum = 0;
 				break;
 			case 1:
-				cout << "Task 1: File Sum" << endl;
+				cout << "Task 1: Sum of integers in file" << endl;
 				genfile();
 				cout << "Sum of numbers in file = " << filesum() << endl << endl;
 				break;
 			case 2:
-				cout << "Task 2: Number Sign" << endl;
+				cout << "Task 2: Sign of integer" << endl;
 				cout << "Enter integer: ";
 				int a;
 				cin >> a;
@@ -382,20 +472,20 @@ int main()
 				}
 				break;
 			case 3:
-				cout << "Task 3: Shape Surface" << endl;
+				cout << "Task 3: Surface of shapes" << endl;
 				surfaces();
 				break;
 			case 4:
-				cout << "Task 4: Old USA flag (1912)" << endl;
+				cout << "Task 4: Print old USA flag" << endl;
 				usaflag();
 				break;
 			case 5:
-				cout << "Task 5: Print sin(x)" << endl;
+				cout << "Task 5: Print function sin(x)" << endl;
 				printsin();
 				break;
 			case 6:
 				{
-					cout << "Task 6: Decode Roman Numbers" << endl;
+					cout << "Task 6: Roman number to int" << endl;
 					cout << "Enter roman number: ";
 					string input;
 					cin >> input;
@@ -408,12 +498,16 @@ int main()
 					break;
 				}
 			case 7:
-				cout << "Task 7: Pseudo-Random Number Generator" << endl;
+				cout << "Task 7: Pseudo-random numbers" << endl;
 				genrand();
 				break;
 			case 8:
-				cout << "Task 8: Matrix Multiplication" << endl;
+				cout << "Task 8: Matrix multiplication" << endl;
 				matrixtask();
+				break;
+			case 9:
+				cout << "Task 9: Numeral system change" << endl;
+				numeralsystems();
 				break;
 			default:
 				cout << "Invalid input, try again!" << endl << endl;
