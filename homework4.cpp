@@ -225,6 +225,29 @@ int romantoarabic(string input)
 	return result;
 }
 
+int crand(int prev, int v)
+{
+	if (v == 1 )
+		return (37 * prev + 3) % 64;
+	else
+		return (25173 * prev + 13849) % 65537;
+}
+
+void genrand()
+{
+	int v, N, temp;
+	cout << "Enter PRNG variant (1 or 2): ";
+	cin >> v;
+	cout << "Enter number of integers to generate: ";
+	cin >> N;
+	for (int i = 0; i <= N; ++i)
+	{
+		temp = crand(temp, v);
+		cout << "Pseudo-random integer S[" << i << "]: " << temp << endl;
+	}
+	cout << endl;
+}
+
 int main()
 {
 	cout << "Program by Un57a6L3" << endl << endl;
@@ -237,7 +260,8 @@ int main()
 		     << "3) Shape Surface" << endl
 		     << "4) Old USA Flag" << endl
 		     << "5) Print sin(x)" << endl
-		     << "6) Roman Number" << endl;
+		     << "6) Roman Number" << endl
+		     << "7) Pseudo-Random" << endl;
 		cout << "Enter task number or 0 to finish: ";
 		cin >> tasknum;
 		cout << endl;
@@ -296,6 +320,10 @@ int main()
 						cout << "Result: " << result << endl << endl;
 					break;
 				}
+			case 7:
+				cout << "Task 7: Pseudo-Random Number Generator" << endl;
+				genrand();
+				break;
 			default:
 				cout << "Invalid input, try again!" << endl << endl;
 				break;
