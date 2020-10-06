@@ -195,9 +195,19 @@ int rval(char letter)
 
 int romantoarabic(string input)
 {
+	int count = 1;
 	int result = 0;
 	for (int i = 0; i < input.length(); ++i)
+	{
 		input[i] = toupper(input[i]);
+		if (i != 0)
+			if (input[i] == input[i - 1])
+				count++;
+			else
+				count = 1;
+		if (count > 3)
+			return -1;
+	}
 	for (int i = 0; i < input.length(); ++i)
 	{
 		if (i < input.length() - 1)
@@ -217,8 +227,9 @@ int romantoarabic(string input)
 
 int main()
 {
+	cout << "Program by Un57a6L3" << endl << endl;
 	int tasknum = 1;
-	while (tasknum == 1)
+	while (tasknum != 0)
 	{
 		cout << "Homework 4. Tasks:" << endl
 		     << "1) File Sum" << endl
@@ -227,12 +238,15 @@ int main()
 		     << "4) Old USA Flag" << endl
 		     << "5) Print sin(x)" << endl
 		     << "6) Roman Number" << endl;
-		cout << "Enter task number: ";
+		cout << "Enter task number or 0 to finish: ";
 		cin >> tasknum;
 		cout << endl;
 
 		switch (tasknum)
 		{
+			case 0:
+				tasknum = 0;
+				break;
 			case 1:
 				cout << "Task 1: File Sum" << endl;
 				genfile();
@@ -269,20 +283,22 @@ int main()
 				printsin();
 				break;
 			case 6:
-				int result;
-				cout << "Task 6: Decode Roman Numbers" << endl;
-				string input;
-				cout << "Enter roman number: ";
-				cin >> input;
-				result = romantoarabic(input);
-				if (result == -1)
-					cout << "Error: invalid input!" << endl << endl;
-				else
-					cout << "Result: " << result << endl << endl;
+				{
+					cout << "Task 6: Decode Roman Numbers" << endl;
+					cout << "Enter roman number: ";
+					string input;
+					cin >> input;
+					int result;
+					result = romantoarabic(input);
+					if (result == -1)
+						cout << "Error: invalid input!" << endl << endl;
+					else
+						cout << "Result: " << result << endl << endl;
+					break;
+				}
+			default:
+				cout << "Invalid input, try again!" << endl << endl;
+				break;
 		}
-
-		cout << "If you want to continue, enter 1: ";
-		cin >> tasknum;
-		cout << endl;
 	}
 }
