@@ -440,7 +440,7 @@ int main()
 		     << "8) Matrix multiplication" << endl
 		     << "9) Numeral system change" << endl;
 		cout << "Enter task number or 0 to finish: ";
-		if (!(std::cin >> tasknum)) return 1;
+		if (!(cin >> tasknum)) return 1;
 		cout << endl;
 
 		switch (tasknum)
