@@ -169,6 +169,52 @@ void printsin()
 	cout << endl;
 }
 
+// I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
+// IV = 4, IX = 9, XL = 40, XC = 90, CD = 400, CM = 900
+
+int rval(char letter)
+{
+	switch (letter)
+	{
+		case 'I':
+			return 1;
+		case 'V':
+			return 5;
+		case 'X':
+			return 10;
+		case 'L':
+			return 50;
+		case 'C':
+			return 100;
+		case 'D':
+			return 500;
+		case 'M':
+			return 1000;
+	}
+}
+
+int romantoarabic(string input)
+{
+	int result = 0;
+	for (int i = 0; i < input.length(); ++i)
+		input[i] = toupper(input[i]);
+	for (int i = 0; i < input.length(); ++i)
+	{
+		if (i < input.length() - 1)
+		{
+			if (rval(input[i]) >= rval(input[i + 1]))
+				result = result + rval(input[i]);
+			else
+			{
+				result = result + rval(input[i + 1]) - rval(input[i]);
+				++i;
+			}
+		}
+		else result = result + rval(input[i]);
+	}
+	return result;
+}
+
 int main()
 {
 	int tasknum = 1;
@@ -179,7 +225,8 @@ int main()
 		     << "2) Number Sign" << endl
 		     << "3) Shape Surface" << endl
 		     << "4) Old USA Flag" << endl
-		     << "5) Print sin(x)" << endl;
+		     << "5) Print sin(x)" << endl
+		     << "6) Roman Number" << endl;
 		cout << "Enter task number: ";
 		cin >> tasknum;
 		cout << endl;
@@ -221,6 +268,17 @@ int main()
 				cout << "Task 5: Print sin(x)" << endl;
 				printsin();
 				break;
+			case 6:
+				int result;
+				cout << "Task 6: Decode Roman Numbers" << endl;
+				string input;
+				cout << "Enter roman number: ";
+				cin >> input;
+				result = romantoarabic(input);
+				if (result == -1)
+					cout << "Error: invalid input!" << endl << endl;
+				else
+					cout << "Result: " << result << endl << endl;
 		}
 
 		cout << "If you want to continue, enter 1: ";
