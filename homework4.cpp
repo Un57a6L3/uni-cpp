@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+#define PI acos(1)
 #include <math.h>
 #include <iostream>
 #include <fstream>
@@ -62,7 +62,7 @@ float scir(float r)
 {
 	if (r <= 0)
 		return -1;
-	return M_PI * r * r;
+	return PI * r * r;
 }
 
 void surfaces()
@@ -148,7 +148,7 @@ void printsin()
 	float x, y;
 	for (j = 0; j < 65; j++)
 	{
-		x = M_PI * (j / 16.0 - 2);
+		x = PI * (j / 16.0 - 2);
 		y = sin(x);
 		y = y * (-10);
 		if (y > 0) a = floor(y) + 12;
@@ -227,7 +227,7 @@ int romantoarabic(string input)
 
 int crand(int prev, int v)
 {
-	if (v == 1 )
+	if (v != 2)
 		return (37 * prev + 3) % 64;
 	else
 		return (25173 * prev + 13849) % 65537;
@@ -236,7 +236,7 @@ int crand(int prev, int v)
 void genrand()
 {
 	int v, N, temp;
-	cout << "Enter PRNG variant (1 or 2): ";
+	cout << "Enter PRNG variant - 1 (default) or 2: ";
 	cin >> v;
 	cout << "Enter number of integers to generate: ";
 	cin >> N;
