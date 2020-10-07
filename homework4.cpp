@@ -191,6 +191,8 @@ int rval(char letter)
 			return 500;
 		case 'M':
 			return 1000;
+		default:
+			return -1;
 	}
 }
 
@@ -211,6 +213,8 @@ int romantoarabic(string input)
 	}
 	for (int i = 0; i < input.length(); ++i)
 	{
+		if (rval(input[i]) == -1)
+			return -1;
 		if (i < input.length() - 1)
 		{
 			if (rval(input[i]) >= rval(input[i + 1]))
