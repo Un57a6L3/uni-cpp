@@ -263,10 +263,9 @@ void matrixtask()
 	for (int i = 0; i < 3; ++i)
 		for (int j = 0; j < 2; ++j)
 		{
-			sum = 0;
+			c[i][j] = 0;
 			for (int k = 0; k < 4; ++k)
-				sum += a[i][k] * b[k][j];
-			c[i][j] = sum;
+				c[i][j] += a[i][k] * b[k][j];
 		}
 
 	// additional tasks
