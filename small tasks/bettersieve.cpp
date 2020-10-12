@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <cmath>
 #define CPS CLOCKS_PER_SEC
 
 using namespace std;
@@ -42,7 +43,7 @@ int main()
 	clock_t t_fill = clock();
 
 	// sieving
-	for (int i = 0; i < N / 2; ++i)
+	for (int i = 0; i < sqrt(N) + 4; ++i)
 	{
 		if (s[i] == 0) continue;
 		for (int j = i + 1; j < N; ++j)
