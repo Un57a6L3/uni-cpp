@@ -11,14 +11,15 @@ int main()
     {
         clock_t t_begin = std::clock();
         int len = n/2 + n%2;
-        int max_border = n/3;
+        int max_border = (n/3 - 1) / 2;
         bitset<10000000> arr;
         arr.reset();
         for (long long i = 1; i <= max_border; ++i)
         {
             if (arr.test(i))
                 continue;
-            for (long long j = 3*i+1; j < len; j += 2*i+1)
+            int step = 2*i+1;
+            for (long long j = 5*i+2; j < len; j += step)
                 arr.set(j);
         }
         //for (int i = 0; i < len; ++i)
