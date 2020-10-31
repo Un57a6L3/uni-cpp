@@ -42,14 +42,20 @@ void analysis(string filename)
 	for (int i = 0; i < 5; ++i)
 		if (counten[i] + counten[i + 5] < min &&
 			counten[i] + counten[i + 5] != 0)
-			indexen = i;
+			{
+				indexen = i;
+				min = counten[i] + counten[i + 5];
+			}			
 	
 	indexru = -1;
 	min = 0x7FFFFFFF;
 	for (int i = 0; i < 10; ++i)
 		if (countru[i] + countru[i + 10] < min &&
 			countru[i] + countru[i + 10] != 0)
-			indexru = i;
+			{
+				indexru = i;
+				min = countru[i] + countru[i + 10];
+			}			
 			
 	if (indexen == -1)
 		cout << "There are no english vowels" << endl;
