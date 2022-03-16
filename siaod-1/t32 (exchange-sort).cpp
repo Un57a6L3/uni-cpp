@@ -20,6 +20,21 @@ void selection_sort(int* a, int n, long long &comps, long long &moves) {
 	}
 }
 
+void exchange_sort(int* arr, int n) {
+    bool isSorted;
+    for (int i = 0; i < n - 1; ++i) {
+        isSorted = true;
+        for (int j = 0; j < n - i - 1; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                std::swap(arr[j], arr[j + 1]);
+                isSorted = false;
+            }
+        }
+        if (isSorted)
+            break;
+    }
+}
+
 void randArray(int* a, int length, int limit) {
 	for (int i = 0; i < length; i++) {
 		a[i] = rand() % limit;
@@ -50,20 +65,4 @@ int main() {
 
 	delete[] a;
 	return 0;
-}
-
-
-void exchange_sort(int* arr, int n) {
-	bool isSorted;
-	for (int i = 0; i < n - 1; ++i) {
-		isSorted = true;
-		for (int j = 0; j < n - i - 1; ++j) {
-			if (arr[j] > arr[j + 1]) {
-				swap(arr[j], arr[j + 1]);
-				isSorted = false;
-			}
-		}
-		if (isSorted)
-			break;
-	}
 }

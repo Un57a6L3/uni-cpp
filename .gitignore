@@ -1,6 +1,7 @@
 # Directories
 **/.idea
 **/cmake-build-debug
+**/trashbin
 
 # Specific files
 CMakeLists.txt
