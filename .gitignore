@@ -1,5 +1,15 @@
+# Directories
+**/.idea
+**/cmake-build-debug
+
+# Specific files
+CMakeLists.txt
+
+# Extensions
 *.circ
 *.txt
 *.png
 *.docx
 *.pdf
+
+# Filenames

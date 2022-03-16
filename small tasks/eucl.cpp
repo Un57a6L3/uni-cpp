@@ -1,47 +1,42 @@
 #include <iostream>
 
-using namespace std;
+/*
+Warning: the brace style down below is not suited for sensitive people.
+It is convenient for better compactness and readability of finished code.
+But NEVER! use it while you're actually coding! You've been warned.
+*/
 
-int euclidean_divide(int a, int b)
-{
-	while (a != 0 && b != 0)
-	{
-		if (a > b)
-			a %= b;
-		else
-			b %= a;
-	}
-	return a + b;
-}
 
-int euclidean_subtract(int a, int b)
-{
-	while (a != b)
-	{
-		if (a > b)
-			a -= b;
-		else
-			b -= a;
-	}
-	return a;
-}
+int euclidean_divide(int a, int b)    {
+    while (a != 0 && b != 0)          {
+        if (a > b)
+            a %= b                    ;
+        else
+            b %= a                    ;}
+    return a + b                      ;}
 
-int main()
-{
-	int a, b, m;
-	cout << "Enter a, b: ";
-	cin >> a >> b;
-	cout << "Choose method: 1 - division, 2 - subtraction: ";
-	cin >> m;
-	switch (m)
-	{
-		case 1:
-			cout << euclidean_divide(a, b);
-			break;
-		case 2:
-			cout << euclidean_subtract(a, b);
-			break;
-		default:
-			cout << "User is monkey";
-	}	
-}
+
+int euclidean_subtract(int a, int b)  {
+    while (a != b)                    {
+        if (a > b)
+            a -= b                    ;
+        else
+            b -= a                    ;}
+    return a                          ;}
+
+
+int main()                                                         {
+    int a, b, m                                                    ;
+    std::cout << "Enter a, b: "                                    ;
+    std::cin >> a >> b                                             ;
+    std::cout << "Choose method: 1 - division, 2 - subtraction: "  ;
+    std::cin >> m                                                  ;
+    switch (m)                                                     {
+        case 1:
+            std::cout << euclidean_divide(a, b)                    ;
+            break                                                  ;
+        case 2:
+            std::cout << euclidean_subtract(a, b)                  ;
+            break                                                  ;
+        default:
+            std::cout << "User is monkey"                          ;}}
