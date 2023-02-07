@@ -1,70 +1,72 @@
 #include <iostream>
 
-/*
-Warning: the brace style down below is not suited for sensitive people.
-It is convenient for better compactness and readability of finished code.
-But NEVER! use it while you're actually coding! You've been warned.
-*/
 
+void delFirstMethod(int *x, int n, int key) {
+    int comp = 0, del = 0;
+    int i = 0;
 
-void delFirstMethod (int *x, int n, int key)         {
-    int comp = 0, del = 0                            ;
-    int i = 0                                        ;
-
-    while (i < n)                                    {
-        comp++                                       ;
-        if (x[i] == key)                             {
-            for (int j = i; j < n - 1; j++)          {
-                comp++                               ;
-                x[j] = x[j + 1]                      ;}
-            n--                                      ;
-            del++                                    ;}
-        else
-            i++                                      ;}
+    while (i < n) {
+        comp++;
+        if (x[i] == key) {
+            for (int j = i; j < n - 1; j++) {
+                comp++;
+                x[j] = x[j + 1];
+            }
+            n--;
+            del++;
+        } else
+            i++;
+    }
 
     for (i = 0; i < n; i++)
-        std::cout << x[i] << ' '                     ;
-    delete[] x                                       ;
-    std::cout << std::endl << std::endl              ;
+        std::cout << x[i] << ' ';
+    delete[] x;
+    std::cout << std::endl << std::endl;
     std::cout << "Comparisons: " << comp
-              << " Deletions: " << del << std::endl  ;}
+              << " Deletions: " << del << std::endl;
+}
 
 
-void delOtherMethod (int *x, int n, int key)         {
-    int comp = 0, del = 0                            ;
-    int j = 0                                        ;
+void delOtherMethod(int *x, int n, int key) {
+    int comp = 0, del = 0;
+    int j = 0;
 
-    for (int i = 0; i < n; i++)                      {
-        x[j] = x[i]                                  ;
-        comp += 2                                    ;
+    for (int i = 0; i < n; i++) {
+        x[j] = x[i];
+        comp += 2;
         if (x[i] != key)
-            j++                                      ;
+            j++;
         else
-            del++                                    ;}
-    n = j                                            ;
+            del++;
+    }
+    n = j;
 
     for (int i = 0; i < n; i++)
-        std::cout << x[i] << ' '                     ;
-    delete[] x                                       ;
-    std::cout << std::endl << std::endl              ;
+        std::cout << x[i] << ' ';
+    delete[] x;
+    std::cout << std::endl << std::endl;
     std::cout << "Comparisons: " << comp
-              << " Deletions: " << del << std::endl  ;}
+              << " Deletions: " << del << std::endl;
+}
 
 
-void random (int *x, int n)         {
+void random(int *x, int n) {
     for (int i = 0; i < n; i++)
-        x[i] = rand() % 10          ;}
+        x[i] = rand() % 10;
+}
 
 
-void print (int *x, int n)          {
+void print(int *x, int n) {
     for (int i = 0; i < n; i++)
-        std::cout << x[i] << ' '    ;
-    std::cout << std::endl          ;}
+        std::cout << x[i] << ' ';
+    std::cout << std::endl;
+}
 
 
-void fill (int *x, int n, int key)  {
+void fill(int *x, int n, int key) {
     for (int i = 0; i < n; i++)
-        x[i] = key                  ;}
+        x[i] = key;
+}
 
 
 int main() {

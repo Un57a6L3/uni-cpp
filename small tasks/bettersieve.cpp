@@ -1,74 +1,76 @@
 #include <iostream>
 #include <ctime>
 #include <cmath>
+
 #define CPS CLOCKS_PER_SEC
 
-/*
-Warning: the brace style down below is not suited for sensitive people.
-It is convenient for better compactness and readability of finished code.
-But NEVER! use it while you're actually coding! You've been warned.
-*/
 
-
-int main()                                 {
+int main() {
     // initialization
-    std::cout << "Enter sieve range: "     ;
-    int N0, N, n                           ;
-    std::cin >> N0                         ;
+    std::cout << "Enter sieve range: ";
+    int N0, N, n;
+    std::cin >> N0;
 
-    clock_t t_begin = clock()              ;
+    clock_t t_begin = clock();
 
     // calculating array length
-    N = N0 / 10                            ;
-    n = N0 % 10                            ;
-    if (n == 0) N = 4 * N                  ;
-    else N = 4 * (N + 1)                   ;
+    N = N0 / 10;
+    n = N0 % 10;
+    if (n == 0) N = 4 * N;
+    else N = 4 * (N + 1);
 
     // defining array
-    int s[N]                               ;
-    s[0] = 2                               ;
-    s[1] = 3                               ;
-    s[2] = 5                               ;
-    s[3] = 7                               ;
+    int s[N];
+    s[0] = 2;
+    s[1] = 3;
+    s[2] = 5;
+    s[3] = 7;
 
     // filling array
-    n = 10                                 ;
-    for (int i = 4; i < N; i += 4)         {
-        s[i] = n + 1                       ;
-        s[i + 1] = n + 3                   ;
-        s[i + 2] = n + 7                   ;
-        s[i + 3] = n + 9                   ;
-        n += 10                            ;}
+    n = 10;
+    for (int i = 4; i < N; i += 4) {
+        s[i] = n + 1;
+        s[i + 1] = n + 3;
+        s[i + 2] = n + 7;
+        s[i + 3] = n + 9;
+        n += 10;
+    }
 
-    clock_t t_fill = clock()               ;
+    clock_t t_fill = clock();
 
     // sieving
-    for (int i = 0; i < sqrt(N) + 4; ++i)  {
+    for (int i = 0; i < sqrt(N) + 4; ++i) {
         if (s[i] == 0)
-            continue                       ;
-        for (int j = i + 1; j < N; ++j)    {
+            continue;
+        for (int j = i + 1; j < N; ++j) {
             if (s[j] == 0)
-                continue                   ;
+                continue;
             if (s[j] % s[i] == 0)
-                s[j] = 0                   ;}}
+                s[j] = 0;
+        }
+    }
 
-    clock_t t_sieve = clock()              ;
+    clock_t t_sieve = clock();
 
     // output
-    n = 0                                  ;
+    n = 0;
     while (s[N] > N0)
-        N--                                ;
-    for (int i = 0; i < N; ++i)            {
-        if (s[i] != 0)                     {
-            std::cout << s[i] << "\t"      ;
-            if (++n == 8)                  {
-                n = 0                      ;
-                std::cout << "\n"          ;}}}
+        N--;
+    for (int i = 0; i < N; ++i) {
+        if (s[i] != 0) {
+            std::cout << s[i] << "\t";
+            if (++n == 8) {
+                n = 0;
+                std::cout << "\n";
+            }
+        }
+    }
 
-    clock_t t_print = clock()              ;
+    clock_t t_print = clock();
 
-    std::cout << "\n\nBetter sieve for numbers up to " << N0 << ":\n"                   ;
-    std::cout << "Time to fill array:\t" << double(t_fill - t_begin) / CPS << " s\n"    ;
-    std::cout << "Time to sieve array:\t" << double(t_sieve - t_fill) / CPS << " s\n"   ;
-    std::cout << "Time to print array:\t" << double(t_print - t_sieve) / CPS << " s\n"  ;
-    std::cout << "Total time to execute:\t" << double(t_print - t_begin) / CPS << " s"  ;}
+    std::cout << "\n\nBetter sieve for numbers up to " << N0 << ":\n";
+    std::cout << "Time to fill array:\t" << double(t_fill - t_begin) / CPS << " s\n";
+    std::cout << "Time to sieve array:\t" << double(t_sieve - t_fill) / CPS << " s\n";
+    std::cout << "Time to print array:\t" << double(t_print - t_sieve) / CPS << " s\n";
+    std::cout << "Total time to execute:\t" << double(t_print - t_begin) / CPS << " s";
+}
